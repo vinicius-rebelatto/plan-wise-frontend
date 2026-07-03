@@ -7,9 +7,10 @@ export default function Home() {
       <Header />
 
       {/* Seção: Hero */}
-      <section className="relative pt-24 pb-32 overflow-hidden flex flex-col items-center text-center px-6">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-200 h-125 bg-brand-light/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <section className="relative pt-24 pb-20 overflow-hidden flex flex-col items-center text-center px-6">
+        {/* Background Grids & Glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-light/20 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-light/30 bg-white/60 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-brand-base shadow-sm">
@@ -47,71 +48,106 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative mt-20 w-full max-w-6xl mx-auto z-20">
+        {/* Mockup Interativo / Visual da Aplicação */}
+        <div className="relative mt-20 w-full max-w-5xl mx-auto z-20">
           <div className="absolute -inset-1 rounded-3xl bg-brand-light/30 blur-2xl opacity-50"></div>
+          
           <div className="relative rounded-2xl border border-surface-border/80 bg-surface-card/90 backdrop-blur-xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
-            <div className="flex items-center gap-2 border-b border-surface-border bg-surface-bg/50 px-4 py-3">
+            {/* Header do Mockup (Simulando o navegador/app) */}
+            <div className="flex items-center gap-4 border-b border-surface-border bg-surface-bg/80 px-4 py-3">
               <div className="flex gap-1.5">
                 <div className="h-3 w-3 rounded-full bg-red-400/80"></div>
                 <div className="h-3 w-3 rounded-full bg-amber-400/80"></div>
                 <div className="h-3 w-3 rounded-full bg-green-400/80"></div>
               </div>
-              <div className="mx-auto h-5 w-48 rounded-md bg-surface-border/50"></div>
+              <div className="flex gap-4 text-xs font-semibold text-text-secondary">
+                <div className="text-brand-base bg-brand-light/10 px-2 py-1 rounded">Simulação de Cenários</div>
+                <div className="px-2 py-1">Visão Geral</div>
+                <div className="px-2 py-1">Transações</div>
+              </div>
             </div>
 
-            <div className="p-8 h-125 flex gap-6 bg-surface-bg">
-              <div className="w-48 hidden md:flex flex-col gap-4">
-                <div className="h-8 w-full rounded bg-surface-card border border-surface-border"></div>
-                <div className="h-4 w-3/4 rounded bg-surface-border/50"></div>
-                <div className="h-4 w-5/6 rounded bg-surface-border/50"></div>
-                <div className="h-4 w-2/3 rounded bg-surface-border/50"></div>
-              </div>
-
-              <div className="flex-1 flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                   <div className="h-24 rounded-xl bg-surface-card border border-surface-border p-4 flex flex-col justify-between shadow-sm">
-                      <div className="h-4 w-1/2 rounded bg-surface-border/60"></div>
-                      <div className="h-8 w-3/4 rounded bg-status-in/80"></div>
-                   </div>
-                   <div className="h-24 rounded-xl bg-surface-card border border-surface-border p-4 flex flex-col justify-between shadow-sm">
-                      <div className="h-4 w-1/2 rounded bg-surface-border/60"></div>
-                      <div className="h-8 w-3/4 rounded bg-status-out/80"></div>
-                   </div>
-                   <div className="h-24 rounded-xl bg-surface-card border border-surface-border p-4 flex flex-col justify-between shadow-sm">
-                      <div className="h-4 w-1/2 rounded bg-surface-border/60"></div>
-                      <div className="h-8 w-3/4 rounded bg-status-pending/80"></div>
-                   </div>
+            {/* Corpo do Mockup (Gráfico de 3 Linhas) */}
+            <div className="p-8 h-[400px] flex flex-col bg-surface-bg relative overflow-hidden">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h3 className="text-lg font-bold text-text-primary">Impacto no Fluxo de Caixa</h3>
+                  <p className="text-xs text-text-secondary">Cenário: Financiamento de Servidor</p>
                 </div>
+                <div className="flex gap-4 text-[10px] font-bold uppercase tracking-wider">
+                  <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-slate-400"></span> Projeção Real</div>
+                  <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500"></span> Apenas Simulação</div>
+                  <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-indigo-600"></span> Consolidado</div>
+                </div>
+              </div>
+              
+              {/* Representação SVG do Gráfico (Design Abstrato) */}
+              <div className="flex-1 w-full relative mt-4">
+                {/* Grid lines */}
+                <div className="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none">
+                  <div className="border-b border-slate-500 w-full"></div>
+                  <div className="border-b border-slate-500 w-full"></div>
+                  <div className="border-b border-slate-500 w-full"></div>
+                  <div className="border-b border-slate-500 w-full"></div>
+                </div>
+                
+                <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 200">
+                  {/* Linha 1: Projeção Real (Tracejada) */}
+                  <path d="M0,150 Q250,140 500,100 T1000,50" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="8 8" />
+                  {/* Linha 2: Simulação Isolada */}
+                  <path d="M0,180 Q250,180 500,190 T1000,195" fill="none" stroke="#f59e0b" strokeWidth="3" />
+                  {/* Linha 3: Consolidado (Soma) */}
+                  <path d="M0,130 Q250,120 500,90 T1000,45" fill="none" stroke="#6366f1" strokeWidth="4" />
+                  
+                  {/* Pontos Interativos (Mock) */}
+                  <circle cx="500" cy="90" r="6" fill="#fff" stroke="#6366f1" strokeWidth="3" className="animate-pulse" />
+                  <circle cx="750" cy="67" r="6" fill="#fff" stroke="#6366f1" strokeWidth="3" />
+                </svg>
 
-                <div className="flex-1 rounded-xl bg-surface-card border border-surface-border relative overflow-hidden flex items-end p-0 shadow-sm">
-                    <div className="absolute inset-0 bg-brand-light/5"></div>
-                    <div className="absolute inset-0 flex flex-col justify-between p-4 opacity-20">
-                       <div className="border-b border-surface-border w-full"></div>
-                       <div className="border-b border-surface-border w-full"></div>
-                       <div className="border-b border-surface-border w-full"></div>
-                       <div className="border-b border-surface-border w-full"></div>
-                    </div>
-                    <div className="w-full h-1/2 bg-linear-to-t from-brand-light/20 to-transparent absolute bottom-0 rounded-t-[100%] shadow-[0_-2px_0_var(--color-brand-light)]"></div>
+                {/* Tooltip Flutuante */}
+                <div className="absolute top-[30%] left-[45%] bg-surface-card border border-surface-border shadow-xl rounded-lg p-3 text-xs z-10 animate-[bounce_4s_infinite]">
+                  <div className="font-bold text-text-primary mb-1">Outubro 2026</div>
+                  <div className="flex justify-between gap-4 text-slate-500">Real: <span>R$ 15.200</span></div>
+                  <div className="flex justify-between gap-4 text-amber-600">Simulação: <span>-R$ 2.000</span></div>
+                  <div className="flex justify-between gap-4 font-bold text-indigo-700 border-t border-surface-border mt-1 pt-1">Consolidado: <span>R$ 13.200</span></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="absolute -left-12 top-32 hidden lg:flex flex-col gap-2 rounded-xl border border-surface-border/80 bg-white/80 backdrop-blur-xl p-4 shadow-2xl animate-[bounce_4s_infinite]">
-             <div className="text-xs font-semibold text-text-secondary">Saldo Previsto</div>
-             <div className="text-xl font-bold text-status-in">+ R$ 12.450,00</div>
-          </div>
-
-          <div className="absolute -right-8 bottom-32 hidden lg:flex items-center gap-3 rounded-xl border border-surface-border/80 bg-white/80 backdrop-blur-xl p-4 shadow-2xl animate-[bounce_5s_infinite_reverse]">
-             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-light/10 text-brand-base">✓</div>
-             <div className="flex flex-col">
-                <div className="text-xs font-semibold text-text-secondary">Contrato mensal</div>
-                <div className="text-sm font-bold text-text-primary">Lançado com sucesso</div>
+          {/* Floating Badges */}
+          <div className="absolute -left-12 top-32 hidden lg:flex flex-col gap-2 rounded-xl border border-surface-border/80 bg-white/80 backdrop-blur-xl p-4 shadow-2xl animate-[bounce_5s_infinite]">
+             <div className="text-xs font-semibold text-text-secondary">Simulação Ativa</div>
+             <div className="text-sm font-bold text-text-primary flex items-center gap-2">
+               <span className="w-2 h-2 rounded-full bg-status-in animate-pulse"></span>
+               Cálculo em tempo real
              </div>
           </div>
         </div>
-        
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-surface-bg to-transparent z-30 pointer-events-none"></div>
+      </section>
+
+      {/* Seção: Trust Badges / Social Proof */}
+      <section className="py-10 border-b border-surface-border bg-white">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-60 grayscale">
+          <div className="text-sm font-bold text-text-secondary tracking-widest uppercase text-center md:text-left">
+            Segurança &<br/>Infraestrutura
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center">
+            {/* Logos representativos (pode usar SVGs reais das tecnologias/parceiros depois) */}
+            <div className="flex items-center gap-2 font-bold text-xl text-slate-700">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              Criptografia AES-256
+            </div>
+            <div className="flex items-center gap-2 font-bold text-xl text-slate-700">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              Auth Google Cloud
+            </div>
+            <div className="flex items-center gap-2 font-bold text-xl text-slate-700">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Dados Isolados (Multi-tenant)
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Seção: Sobre (Contexto do Problema) */}

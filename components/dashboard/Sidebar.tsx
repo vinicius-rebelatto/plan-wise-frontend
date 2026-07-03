@@ -45,7 +45,7 @@ export default function Sidebar() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/icon.png"
-            alt="Plan Wise Logo"
+            alt="Finatto Logo"
             width={32}
             height={32}
             quality={100}
@@ -53,7 +53,7 @@ export default function Sidebar() {
             priority
           />
           <span className={`text-xl text-text-primary tracking-tight ${nourd.className}`}>
-            Plan Wise
+            Finatto
           </span>
         </Link>
       </div>

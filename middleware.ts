@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Bloqueia acesso ao /onboarding ou /dashboard se não houver token
-  if ((pathname.startsWith('/onboarding') || pathname.startsWith('/dashboard') || pathname.startsWith('/ia')) && !token) {
+  if ((pathname.startsWith('/onboarding') || pathname.startsWith('/dashboard') || pathname.startsWith('/workspace')) && !token) {
     return NextResponse.redirect(new URL('/auth', request.url));
   }
 
@@ -26,5 +26,6 @@ export const config = {
     '/onboarding/:path*',
     '/dashboard/:path*',
     '/auth',
+    '/workspace/:path*',
   ],
 };

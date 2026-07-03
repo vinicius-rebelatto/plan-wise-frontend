@@ -17,7 +17,7 @@ function AuthContent() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // Novo estado
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,6 +31,32 @@ function AuthContent() {
     setIsLogin(mode !== "register");
     setErrorMessage("");
   }
+
+  // Função para verificar o perfil e redirecionar
+  const checkWorkspaceAndRedirect = async (token: string) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/me`, {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const profileData = await response.json();
+        if (profileData.workspaceId) {
+          router.push("/dashboard");
+        } else {
+          router.push("/onboarding");
+        }
+      } else {
+        // Fallback em caso de erro na requisição do perfil
+        router.push("/onboarding");
+      }
+    } catch (error) {
+      console.error("Erro ao verificar workspace do usuário:", error);
+      router.push("/onboarding");
+    }
+  };
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,10 +77,12 @@ function AuthContent() {
 
       const data = await response.json();
       document.cookie = `planwise_auth_token=${data.token}; path=/; max-age=86400; SameSite=Lax`;
-      router.push("/dashboard");
+      
+      // Verifica o workspace antes de rotear
+      await checkWorkspaceAndRedirect(data.token);
+      
     } catch (error: any) {
       setErrorMessage(error.message);
-    } finally {
       setIsLoading(false);
     }
   };
@@ -79,7 +107,6 @@ function AuthContent() {
       });
 
       if (!response.ok) {
-        // Tratamento específico para o HTTP 409 Conflict
         if (response.status === 409) {
           throw new Error("Uma conta com esse e-mail já existe.");
         }
@@ -90,10 +117,12 @@ function AuthContent() {
 
       const data = await response.json();
       document.cookie = `planwise_auth_token=${data.token}; path=/; max-age=86400; SameSite=Lax`;
-      router.push("/onboarding");
+      
+      // Verifica o workspace antes de rotear
+      await checkWorkspaceAndRedirect(data.token);
+      
     } catch (error: any) {
       setErrorMessage(error.message);
-    } finally {
       setIsLoading(false);
     }
   };
@@ -188,7 +217,7 @@ function AuthContent() {
           
           <p className="text-sm text-text-secondary text-center">
             Não tem uma conta?{" "}
-            <button tabIndex={isLogin ? 0 : -1} onClick={() => {setIsLogin(false); setErrorMessage("");}} className="text-brand-base font-bold hover:underline">
+            <button type="button" tabIndex={isLogin ? 0 : -1} onClick={() => {setIsLogin(false); setErrorMessage("");}} className="text-brand-base font-bold hover:underline">
               Registre-se
             </button>
           </p>
@@ -308,7 +337,7 @@ function AuthContent() {
           
           <p className="text-sm text-text-secondary text-center">
             Já possui uma conta?{" "}
-            <button tabIndex={!isLogin ? 0 : -1} onClick={() => {setIsLogin(true); setErrorMessage("");}} className="text-brand-base font-bold hover:underline">
+            <button type="button" tabIndex={!isLogin ? 0 : -1} onClick={() => {setIsLogin(true); setErrorMessage("");}} className="text-brand-base font-bold hover:underline">
               Fazer Login
             </button>
           </p>
